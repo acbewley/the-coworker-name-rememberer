@@ -1,0 +1,24 @@
+{
+  "name": "the-coworker-name-rememberer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acbewley/the-coworker-name-rememberer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acbewley/the-coworker-name-rememberer/issues"
+  },
+  "homepage": "https://github.com/acbewley/the-coworker-name-rememberer#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "mysql": "^2.18.1"
+  }
+}
