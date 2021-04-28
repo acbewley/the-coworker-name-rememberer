@@ -6,8 +6,10 @@ const connection = mysql.createConnection({
     port: 3306,
     user: 'root',
     password: 'root',
-    database: 'companydb'
+    database: 'companyDB'
 });
+
+const empTable = []
 
 const ascii = () => {
     console.log(`
@@ -71,7 +73,19 @@ const startApp = () => {
 }
 
 const allEmp = () => {
-
+    connection.query('SELECT * FROM employee LEFT JOIN roles ON employee.role_id = roles.id LEFT JOIN department ON roles.department_id = department.id', (err, res) => {
+        if (err) throw err;
+        for (i = 0; i < res.length; i++) {
+            empTable.push({
+                "Name": res[i].first_name + " " + res[i].last_name,
+                "Department": res[i].name,
+                "Title": res[i].title,
+                "Salary": "$" + res[i].salary
+            })
+        }
+        console.table(empTable);
+        startApp();
+    })
 };
 
 const allDep = () => {
@@ -79,7 +93,7 @@ const allDep = () => {
 };
 
 const allRole = () => {
-    
+
 };
 
 const addEmp = () => {
