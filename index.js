@@ -105,9 +105,20 @@ const allDep = () => {
                 }
             }
         ]).then(ans => {
-            connection.query(`SELECT * FROM roles WHERE roles.department_id = ${ans.dep} LEFT JOIN employee ON roles.id = employee.role_id`, (err, res) => {
+            connection.query(`SELECT * FROM roles WHERE roles.department_id = ${ans.dep}`, (err, res) => {
                 if (err) throw err;
-                console.log(res)
+                const roles = [];
+                for (i = 0; i < res.length; i++) {
+                    roles.push(res[i].id)
+                }
+                connection.query(`SELECT * FROM employee WHERE role_id IN (${roles})`, (err, res) => {
+                    const empTable = [];
+                    for (i = 0; i < res.length; i++) {
+                        empTable.push({
+                            "Name": res[i].first_name + " " + res[i].last_name
+                        })
+                    }
+                })
             })
         })
     })
